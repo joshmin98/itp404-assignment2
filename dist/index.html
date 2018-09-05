@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet"/>
+    <meta charset="UTF-8"> 
+    <title>
+      Reddit Search
+    </title>
+  </head>
+  <body>
+
+    <template id="reddit-thread">
+      <div id="thread">
+	<a href="{{url}}" target="_blank">
+	  <h2>{{format-title title}}</h2>
+	</a>
+	<h3>Author: {{author}}</h3>
+	<p>Score: {{score}}</p>
+	<p># Subscribers: {{format-number subreddit_subscribers}}</p>
+	{{#if num_comments}}
+	<p># Comments: {{num_comments}}</p>
+	{{else}}
+	<p>No comments</p>
+	{{/if}}
+      </div>
+    </template>
+
+    <form action="">
+      <input type="text" id="search-param"/>
+      <input name="" type="submit" value="Search"/>
+    </form>
+
+    <div id="results"></div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
