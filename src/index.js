@@ -24,16 +24,18 @@ $('form').submit((event) => {
     $.ajax({
 	type: 'GET',
 	url: url
-    }).then((threads) => {
-	$('#results').html('');
-	console.log(threads.data.children);
-	threads.data.children.forEach((thread) => {
-	    let threadInfo = thread.data;
-	    let renderedRedditThread = renderRedditThread(threadInfo);
-	    $('#results').append(renderedRedditThread);
+    }).then(
+	(threads) => {
+	    $('#results').html('');
+	    console.log(threads.data.children);
+	    threads.data.children.forEach((thread) => {
+		let threadInfo = thread.data;
+		let renderedRedditThread = renderRedditThread(threadInfo);
+		$('#results').append(renderedRedditThread);
+	    });
+	},
+	(error) => {
+	    $('#results').append('<h1 id="error">Error! Thread may not exist.</h1>');
+	    console.log('Error: ', error);
 	});
-    }, (error) => {
-	$('#results').append('<h1 id="error">Error! Thread may not exist.</h1>');
-	console.log('Error: ', error);
-    });
 });
